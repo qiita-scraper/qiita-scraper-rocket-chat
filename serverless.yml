@@ -1,0 +1,32 @@
+frameworkVersion: ">=1.5.0"
+
+service: QiitaBot
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  runtime: python3.6
+  cfLogs: true
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+
+functions:
+  qiita:
+    handler: main.handler
+    timeout: 900
+    environment:
+      ROCKET_CHAT_URL: ${opt:url}
+      ROCKET_CHAT_USER: ${opt:user} # TODO: enable encryption
+      ROCKET_CHAT_PASSWORD: ${opt:password} # TODO: enable encryption
+    events:
+      - schedule:
+          name: morning
+          description: every morning
+          rate: cron(15 9 * * ? *)
+          enabled: true
+
