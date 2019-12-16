@@ -8,7 +8,7 @@ class Qiita:
     def __init__(self):
         pass
 
-    def get_qiita_organization_users(self, organization_name):
+    def fetch_organization_users(self, organization_name):
         """
         Qiita Organizationに所属するユーザIDの一覧を取得する
         :param organization_name: Organization名 (example: intec)

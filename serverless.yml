@@ -27,6 +27,6 @@ functions:
       - schedule:
           name: morning
           description: every morning
-          rate: cron(15 9 * * ? *)
+          rate: cron(15 0 * * ? *)
           enabled: true
 
