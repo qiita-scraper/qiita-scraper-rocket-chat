@@ -11,15 +11,12 @@ jobs:
             - v1-dependencies-{{ checksum "requirements.txt" }}
             - v1-dependencies-
       - run:
-          name: install dependencies
+          name: install dependencies and test
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
             pip install -r requirements-dev.txt
-      - run:
-          name: unittest
-          command: |
             python -m unittest test.py
       - save_cache:
           paths:
