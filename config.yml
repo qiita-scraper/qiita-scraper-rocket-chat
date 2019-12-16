@@ -1,5 +1,5 @@
 rocket_chat:
-  room_name: bots
+  room_name: qiita
 
 qiita:
   organization: intec

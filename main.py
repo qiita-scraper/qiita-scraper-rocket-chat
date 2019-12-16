@@ -16,7 +16,6 @@ def main():
         articles = q.fetch_recent_user_articles(user)
         for yesterday_article in q.extract_yesterday_articles(articles):
             msg = rc.format_message(user=user, title=yesterday_article['title'], article_url=yesterday_article['url'])
-            room_name = 'bots'
             rc.send_message_to_rocket_chat(msg, room_name)
 
 
