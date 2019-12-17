@@ -1,11 +1,13 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/python:3.6.1
+    machine: true
     working_directory: ~/repo
     steps:
       - checkout
+      - run:
+          name: "Set Python Version"
+          command: pyenv global 3.7.0
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
