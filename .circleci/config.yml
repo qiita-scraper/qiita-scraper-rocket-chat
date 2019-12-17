@@ -1,13 +1,15 @@
 version: 2
 jobs:
   build:
-    machine: true
-    working_directory: ~/repo
+    machine:
+      image: circleci/classic:201808-01
     steps:
       - checkout
       - run:
-          name: "Set Python Version"
-          command: pyenv global 3.7.0
+          name: "Switch to Python v3.7"
+          command: |
+            pyenv versions
+            pyenv global 3.7.0
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
