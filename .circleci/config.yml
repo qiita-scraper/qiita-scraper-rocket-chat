@@ -11,6 +11,9 @@ jobs:
             - v1-dependencies-{{ checksum "requirements.txt" }}
             - v1-dependencies-
       - run:
+          name: docker-compose up
+          command: sh dcup.sh
+      - run:
           name: install dependencies and test
           command: |
             python3 -m venv venv
@@ -22,4 +25,3 @@ jobs:
           paths:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
-

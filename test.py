@@ -1,22 +1,16 @@
 import unittest
 from rocket_chat.rocket_chat import RocketChat
-import os
 import urllib
 from qiita.qiita import Qiita
 import freezegun
-
+import json
 
 class TestQiitaScraper(unittest.TestCase):
     def setUp(self):
-        self.aurhorized_user = os.environ.get("ROCKET_CHAT_USER")
-        self.aurhorized_password = os.environ.get("ROCKET_CHAT_PASSWORD")
-        self.rocket_chat_url = os.environ.get("ROCKET_CHAT_URL")
-        if self.rocket_chat_url is None or len(self.rocket_chat_url) == 0:
-            raise Exception('ROCKET_CHAT_URL is not set in environment variable')
-        if self.aurhorized_user is None or len(self.aurhorized_user) == 0:
-            raise Exception('ROCKET_CHAT_USER is not set in environment variable')
-        if self.aurhorized_password is None or len(self.aurhorized_password) == 0:
-            raise Exception('ROCKET_CHAT_PASSWORD is not set in environment variable')
+        # rocket chat admin user set in docker-compoose.yml rocketchat service environment value.
+        self.aurhorized_user = 'admin'
+        self.aurhorized_password = 'supersecret'
+        self.rocket_chat_url = 'http://localhost:3000'
 
     def test_login_success(self):
         rocket_chat = RocketChat(self.rocket_chat_url, self.aurhorized_user, self.aurhorized_password)
